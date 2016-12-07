@@ -44,14 +44,14 @@ We'll start by using npm to install all of the dependencies necessary for our pr
 * `style-loader`
 * `css-loader`
     * These allow Webpack to handle our CSS as well as our JS
-    
+
 **Standard Dependencies** ( `npm i --save` )
 
 * `react`
     * The core React library
 * `react-dom`
     * The entry point of working with the DOM in React
-    
+
 **Checkpoint:** You should now be able to run `webpack-dev-server -d` and navigate a browser window to http://localhost:8080.
 
 ___
@@ -70,7 +70,7 @@ We'll start in `index.js`, remember to check Webpack in your terminal for errors
 * Using ReactDOM's `render` method, render an `<h1>Hello from index.js!</h1>` onto the div with the id of `react-node`
     * Note that it is good practice to wrap this in a `document.addEventListener( "DOMContentLoaded", () => { //...` to ensure the application doesn't try to mount before the HTML document is ready.
 * Import `styles.css` ( no need to save it to a variable ) so that Webpack will handle our styles as well.
-    
+
 **Checkpoint:** You should now be able to navigate to http://localhost:8080 and see a header with the text "Hello from index.js!". Your code should look something like this:
 
 ``` jsx
@@ -82,7 +82,7 @@ import "./styles.css"
 
 document.addEventListener( "DOMContentLoaded", () => {
 	const reactNode = document.getElementById( "react-node" );
-    
+
     if ( reactNode ) {
         ReactDOM.render(
             <h1>Hello from index.js!</h1>
@@ -100,9 +100,9 @@ Now that we are set up and rendering, we can start building our first component.
 ``` jsx
 <div>
     <h1>The <strong>facebook</strong> Friend Machine</h1>
-    
+
     <div className="friends">
-    
+
     </div>
 </div>
 ```
@@ -192,7 +192,7 @@ import React from "react";
 class FriendsList extends React.Component {
 	constructor( props ) {
 	    super( props );
-	    
+
 		this.state = {
 			  searchText: ""
 			, orderBy: "name"
@@ -355,7 +355,7 @@ Create a new file named `Friend.js` and follow the usual steps for creating a cl
 	* Don't forget that every repeated item in React needs a unique `key`. `friend.$$hashKey` would work well for this.
 	* Be careful of null values!
 * Adjust `Friend.js` to use `this.props` instead of the static data we included in our original JSX.
-	
+
 **Checkpoint:** You should now be displaying a large list of friends. Your code should look something like this:
 
 ``` jsx
@@ -380,7 +380,7 @@ class FriendsList extends React.Component {
 				status={ friend.status ? friend.status.message : "" }
 			/>
 		) );
-        
+
         return (
             // ...
             <ul>
@@ -427,14 +427,14 @@ As the final touch, we need to add sorting and filtering. For this we will use p
 * Using the values we have stored on our FriendList component's state and built in array methods sort, filter, and reverse the array of Friend components as expected.
     * **Warning:** JavaScript's built in `.sort` does not reliably sort in Chrome. Either test in another browser or find a different sorting algorithm.
     * Your code should look something like this:
-    
+
 ``` jsx
 // FriendsList.js
 
 // ...
 const friendsList = friends
 	.filter( friend => friend.name.toLowerCase().indexOf( this.state.searchText.toLowerCase() ) !== -1 )
-	.sort( ( a, b ) => a[ this.state.orderBy ] > b[ this.state.orderBy ] )
+	.sort( ( a, b ) => a[ this.state.orderBy ] > b[ this.state.orderBy ] ? 1 : -1 )
 	.map( friend => (
 		<Friend
 			currentLocation={ friend.current_location || {} }
@@ -463,15 +463,15 @@ ___
 
 ### Contributions
 
-#### 
- 
+####
+
 If you see a problem or a typo, please fork, make the necessary changes, and create a pull request so we can review your changes and merge them into the master repo and branch.
 
 ## Copyright
 
 ### Copyright
 
-#### 
+####
 
 © DevMountain LLC, 2016. Unauthorized use and/or duplication of this material without express and written permission from DevMountain, LLC is strictly prohibited. Excerpts and links may be used, provided that full and clear credit is given to DevMountain with appropriate and specific direction to the original content.
 
